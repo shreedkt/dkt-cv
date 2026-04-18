@@ -228,6 +228,51 @@ p + p { margin-top: 1em; }
   gap: 3rem;
 }
 
+/* Desktop 2-column layout for the image */
+@media (min-width: 840px) {
+  .hero {
+    grid-template-columns: 1fr auto;
+    align-items: start; /* FIXED: Aligns the image to the top instead of the middle */
+    gap: clamp(2rem, 5vw, 6rem);
+  }
+  
+  /* Keep text content in the left column */
+  .hero > div:not(.hero-profile) {
+    grid-column: 1;
+  }
+  
+  /* Image goes to the right column and spans all rows */
+  .hero-profile {
+    grid-column: 2;
+    grid-row: 1 / span 4;
+    justify-self: end;
+    margin-top: 1.5rem; /* FIXED: Pushes it slightly down so it aligns with "Deepak Kumar" */
+  }
+}
+
+.hero-profile {
+  width: clamp(250px, 30vw, 300px); /* Slightly refined the max-size so it stays perfectly proportionate */
+  margin-inline: auto; /* Centers image on mobile */
+}
+
+@media (min-width: 840px) {
+  .hero-profile {
+    margin-inline: 0; /* Align perfectly on desktop */
+  }
+}
+
+/* The circular image style */
+.profile-pic {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center; /* Ensures your face is centered */
+  border: 3px solid var(--ink); /* Matches the dark elegant stroke in your design */
+}
+
 .hero-name {
   font-family: var(--f-display);
   font-size: var(--step-5);
@@ -516,6 +561,8 @@ section.page-section {
   min-height: 180px;
   position: relative;
   overflow: hidden;
+  color: inherit;
+  text-decoration: none;
 }
 .feature-card::after {
   content: '';
