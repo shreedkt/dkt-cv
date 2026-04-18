@@ -11,6 +11,41 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* --- Home: local refinements --- */
+
+    /* Kill inline margin/padding repeats */
+    .hero-name          { margin-top: 1rem; }
+    .index-head         { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .index-head .title  { font-size: var(--step-3); margin-top: 0.25rem; }
+    .index-section      { padding-bottom: 3rem; }
+
+    /* --- Mobile: image sits directly under the name --- */
+    @media (max-width: 768px) {
+      .hero {
+        display: flex;
+        flex-direction: column;
+        gap: 1.25rem;
+      }
+      .hero .hero-title-wrap { order: 1; }
+      .hero .hero-profile    { order: 2; margin: 0; }
+      .hero .hero-lede-wrap  { order: 3; }
+      .hero .hero-meta       { order: 4; }
+
+      /* Tighter profile image on small screens */
+      .hero-profile .profile-pic {
+        display: block;
+        width: min(72%, 280px);
+        height: auto;
+        margin: 0 auto;
+        border-radius: 12px;
+      }
+
+      .hero-name { margin-top: 0.5rem; }
+      .index-section { padding-bottom: 2rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -31,15 +66,15 @@
 
   <main class="container">
     <section class="hero">
-      <div>
+      <div class="hero-title-wrap">
         <p class="eyebrow reveal d1">Portfolio</p>
-        <h1 class="hero-name reveal d2" style="margin-top: 1.5rem;">
+        <h1 class="hero-name reveal d2">
           Deepak&nbsp;Kumar
           <span class="line2 italic">Tiwari.</span>
         </h1>
       </div>
 
-      <div class="reveal d3">
+      <div class="hero-lede-wrap reveal d3">
         <p class="hero-lede">
           <em class="italic">Assistant Professor</em> in Computer Applications, full-stack developer,
           and published author working at the intersection of <em class="italic">software
@@ -65,7 +100,7 @@
           <span class="value">1 book · 2 research<br/>papers (UGC CARE)</span>
         </div>
       </div>
-      
+
       <div class="hero-profile reveal d4">
         <img src="handsome1.jpeg" alt="Deepak Kumar Tiwari" class="profile-pic">
       </div>
@@ -73,11 +108,11 @@
 
     <div class="divider reveal d5"><span></span></div>
 
-    <section class="reveal d5" style="padding-bottom: 4rem;">
-      <div style="display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 1rem;">
+    <section class="reveal d5 index-section">
+      <div class="index-head">
         <div>
           <span class="section-num">§ Index</span>
-          <h2 class="display" style="font-size: var(--step-3); margin-top: 0.5rem;">
+          <h2 class="display title">
             Explore the <span class="italic" style="color: var(--accent);">work</span>.
           </h2>
         </div>

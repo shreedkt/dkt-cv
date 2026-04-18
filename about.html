@@ -10,6 +10,62 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,30..100;1,9..144,300..700,30..100&family=Geist:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    /* --- About page: local formatting refinements --- */
+
+    /* Tighten the lead paragraph; stop it from inheriting oversized display font */
+    .about-lead {
+      font-size: var(--step-1);
+      line-height: 1.5;
+      font-family: var(--f-display);
+      font-variation-settings: 'opsz' 36;
+      color: var(--ink-soft);
+      font-weight: 300;
+      margin: 0 0 1.25rem;
+    }
+
+    /* Consistent, compact paragraph rhythm inside the right column */
+    .two-col > div > p + p { margin-top: 1rem; }
+
+    /* Section heading used inside the Philosophy block */
+    .sub-head {
+      font-size: var(--step-2);
+      margin: 0 0 0.75rem;
+    }
+    .sub-head + .philosophy + .sub-head { margin-top: 2rem; }
+
+    /* Hobbies grid — pull it a bit closer to the lead line */
+    .hobbies-grid { margin-top: 1.25rem; }
+    .philosophy.tight { margin-top: 1.5rem; }
+
+    /* --- Goals list (Beyond work) --- */
+    .goals-list {
+      margin: 0;
+      padding-left: 1.25rem;   /* hanging indent for the numbers */
+      counter-reset: goal;
+    }
+    .goals-list > li {
+      margin-bottom: 0.9rem;
+      line-height: 1.55;
+    }
+    .goals-list > li:last-child { margin-bottom: 0; }
+
+    /* Nested descriptions (points 2, 5, 7) — proper tab indent */
+    .goals-list ul {
+      list-style: disc;
+      margin: 0.5rem 0 0 0;
+      padding-left: 2rem;      /* the "tab space" under the parent */
+    }
+    .goals-list ul > li {
+      margin-bottom: 0.25rem;
+      color: var(--ink-soft);
+      font-weight: 300;
+    }
+
+    /* Slightly tighter divider around this page */
+    .page-section .divider { margin: 2.25rem 0; }
+  </style>
 </head>
 <body>
 
@@ -33,27 +89,30 @@
         <h1 class="display">Bridging the gap between <em class="italic">theory</em> and <em class="italic">real-world implementation</em>.</h1>
       </div>
 
+      <!-- Biography -->
       <div class="two-col reveal d2">
         <div class="col-label">
           <span class="eyebrow">Biography</span>
         </div>
         <div>
-          <p style="font-size: var(--step-1); line-height: 1.5; font-family: var(--f-display); font-variation-settings: 'opsz' 36; color: var(--ink-soft); font-weight: 300;">
+          <p class="about-lead">
             I am an educator and software developer who has spent the last years moving between two
             disciplines that most people treat as separate — and noticing they are not.
           </p>
-          <p style="margin-top: 2rem;">
-            I hold an <strong style="color: var(--ink);">M.C.A from Marwari College, Ranchi University</strong> (79.38%),
+          <p>
+            I hold an <strong>M.C.A from Marwari College, Ranchi University</strong> (79.38%),
             after a B.Sc in Computer Application Honours from Nilamber Pitamber University, Palamu. Between
-            studies and teaching, I worked briefly as a Junior Software Developer at <strong style="color: var(--ink);">Balaji Amrut Builders &amp; Promoters Pvt. Ltd.</strong>, Ranchi —
+            studies and teaching, I worked briefly as a Junior Software Developer at
+            <strong>Balaji Amrut Builders &amp; Promoters Pvt. Ltd.</strong>, Ranchi —
             shipping PHP/MySQL modules and handling the less-glamorous side of technical ops.
           </p>
           <p>
-            Since March 2024, I have been an <strong style="color: var(--ink);">Assistant Professor in
+            Since March 2024, I have been an <strong>Assistant Professor in
             the B.C.A Department at RVS College of Engineering and Technology</strong>, Jamshedpur.
             Alongside teaching Data Structures with C, Problem Solving in C, and Python Programming,
-            I serve as <em class="italic">ERP Co-coordinator</em>, <em class="italic">Principal Investigator <strong style="color: var(--ink);">(PI) </strong> of
-            the Helix Tech &amp; AI Club</em>, and <em class="italic">Placement Co-ordinator Department of BCA</em>.
+            I serve as <em class="italic">ERP Co-coordinator</em>, <em class="italic">Principal Investigator
+            <strong>(PI)</strong> of the Helix Tech &amp; AI Club</em>, and
+            <em class="italic">Placement Co-ordinator, Department of BCA</em>.
           </p>
           <p>
             Parallel to teaching, I continue to build. I am the author of the book
@@ -173,12 +232,12 @@
       <div class="two-col reveal d5">
         <div class="col-label"><span class="eyebrow">Hobbies &amp; Interests</span></div>
         <div>
-          <p style="font-size: var(--step-1); line-height: 1.5; font-family: var(--f-display); font-variation-settings: 'opsz' 36; color: var(--ink-soft); font-weight: 300;">
+          <p class="about-lead">
             Away from the keyboard, I keep life simple — slow mornings, long walks, and time spent
             tending to the small things that quietly shape a good day.
           </p>
 
-          <div class="skills-grid" style="margin-top: 2rem;">
+          <div class="skills-grid hobbies-grid">
             <div class="skill-group">
               <h4>Reading</h4>
               <ul>
@@ -209,7 +268,7 @@
             </div>
           </div>
 
-          <div class="philosophy" style="margin-top: 2.5rem;">
+          <div class="philosophy tight">
             <p>Read slowly. Walk daily.</p>
             <p>Keep the body still, and the mind quiet.</p>
             <p>Clean spaces invite clearer thinking.</p>
@@ -223,14 +282,14 @@
       <div class="two-col reveal d5">
         <div class="col-label"><span class="eyebrow">Philosophy</span></div>
         <div>
-          <h3 class="display" style="font-size: var(--step-2); margin-bottom: 1rem;">On writing code.</h3>
+          <h3 class="display sub-head">On writing code.</h3>
           <div class="philosophy">
             <p>Write code that is readable before clever.</p>
             <p>Focus on strong fundamentals and clean architecture.</p>
             <p>Learn continuously and build consistently.</p>
           </div>
 
-          <h3 class="display" style="font-size: var(--step-2); margin: 2.5rem 0 1rem;">On teaching.</h3>
+          <h3 class="display sub-head" style="margin-top: 2rem;">On teaching.</h3>
           <div class="philosophy">
             <p>Simplify complex concepts.</p>
             <p>Focus on practical understanding.</p>
@@ -241,53 +300,50 @@
 
       <div class="divider reveal d6"><span></span></div>
 
-      <!-- Personal -->
+      <!-- Beyond work -->
       <div class="two-col reveal d6">
         <div class="col-label"><span class="eyebrow">Beyond work</span></div>
         <div>
           <p>
             Based in Jamshedpur with roots in Garhwa and Palamu, Jharkhand. I am comfortable
-            in <strong style="color: var(--ink);">English, Hindi, and Sanskrit</strong>, and have been
-            an <strong style="color: var(--ink);">NCC "A" and "B" Certificate holder</strong>.
+            in <strong>English, Hindi, and Sanskrit</strong>, and have been
+            an <strong>NCC "A" and "B" Certificate holder</strong>.
           </p>
-          <p>
-           <ol>
-  <li><strong>Build a Strong Research & Academic Profile</strong>
-  </li>
 
-  <li><strong>Industry Collaboration / Consulting</strong>
-    <ul>
-      <li>Offer AI/ML consulting to startups or local industries</li>
-      <li>Work on freelance projects (computer vision, web apps, automation)</li>
-      <li>Collaborate with companies for student projects and internships</li>
-    </ul>
-  </li>
+          <ol class="goals-list">
+            <li><strong>Build a Strong Research &amp; Academic Profile</strong></li>
 
-  <li><strong>Higher Studies</strong>
-  </li>
+            <li>
+              <strong>Industry Collaboration / Consulting</strong>
+              <ul>
+                <li>Offer AI/ML consulting to startups or local industries</li>
+                <li>Work on freelance projects (computer vision, web apps, automation)</li>
+                <li>Collaborate with companies for student projects and internships</li>
+              </ul>
+            </li>
 
-  <li><strong>Tech Product or Startup (Tech + AI Focus)</strong>
-  </li>
+            <li><strong>Higher Studies</strong></li>
 
-  <li><strong>Competitive Programming / Mentorship Ecosystem</strong>
-    <ul>
-      <li>Start or expand a coding/AI club (e.g., Helix)</li>
-      <li>Train students for placements, hackathons, and competitions</li>
-      <li>Build a reputation as a placement-focused mentor</li>
-    </ul>
-  </li>
+            <li><strong>Tech Product or Startup (Tech + AI Focus)</strong></li>
 
-  <li><strong>Certifications & Specialization Growth</strong>
-    
-  </li>
+            <li>
+              <strong>Competitive Programming / Mentorship Ecosystem</strong>
+              <ul>
+                <li>Start or expand a coding/AI club (e.g., Helix)</li>
+                <li>Train students for placements, hackathons, and competitions</li>
+                <li>Build a reputation as a placement-focused mentor</li>
+              </ul>
+            </li>
 
-  <li><strong>Career Identity Paths</strong>
-    <ul>
-      <li>AI Practitioner / Consultant (projects + industry work)</li>
-    </ul>
-  </li>
-</ol>
-          </p>
+            <li><strong>Certifications &amp; Specialization Growth</strong></li>
+
+            <li>
+              <strong>Career Identity Paths</strong>
+              <ul>
+                <li>AI Practitioner / Consultant (projects + industry work)</li>
+              </ul>
+            </li>
+          </ol>
         </div>
       </div>
     </section>
