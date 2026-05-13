@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Class notes by Deepak Kumar Tiwari — Python, Data Structures with C, and Problem Solving in C. Free, openly downloadable study material for BCA and B.Tech students at RVSCET, Jamshedpur." />
+  <meta name="author" content="Deepak Kumar Tiwari" />
+  <meta property="og:title" content="Notes — Deepak Kumar Tiwari" />
+  <meta property="og:description" content="Openly downloadable class notes — Python (BCA 4), Data Structures with C (BCA 2), and Problem Solving in C (B.Tech 1)." />
+  <meta property="og:type" content="website" />
+  <title>Notes — Deepak Kumar Tiwari</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Newsreader:ital,wght@0,300;0,400;0,500;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #fbf9f4;
+      --ink: #1a1814;
+      --ink-soft: #4a4640;
+      --ink-faint: #8a857d;
+      --rule: #d8d3c8;
+      --accent: #8a3a1f;
+      --paper: #f4f0e6;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Newsreader", "Iowan Old Style", Georgia, serif;
+      background: var(--bg);
+      color: var(--ink);
+      font-size: 18px;
+      line-height: 1.55;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    header {
+      border-bottom: 1px solid var(--rule);
+      padding: 22px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(251, 249, 244, 0.94);
+      backdrop-filter: blur(6px);
+      z-index: 10;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: -0.01em;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      font-size: 14px;
+      color: var(--ink-soft);
+      letter-spacing: 0.02em;
+      transition: color 0.2s ease;
+      position: relative;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    nav a.active {
+      color: var(--ink);
+      font-weight: 500;
+    }
+
+    nav a.active::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -6px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .eyebrow {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 14px;
+      color: var(--ink-faint);
+      letter-spacing: 0.04em;
+      text-transform: lowercase;
+      margin: 56px 0 18px;
+    }
+
+    .hero h1 {
+      font-family: "Fraunces", serif;
+      font-weight: 400;
+      font-size: clamp(44px, 6.5vw, 84px);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      margin-bottom: 28px;
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero p.lead {
+      font-size: 20px;
+      color: var(--ink-soft);
+      max-width: 680px;
+      line-height: 1.55;
+      margin-bottom: 14px;
+    }
+
+    .hero .meta {
+      font-family: "JetBrains Mono", ui-monospace, monospace;
+      font-size: 12px;
+      color: var(--ink-faint);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 22px;
+    }
+
+    section.divider {
+      border-top: 1px solid var(--rule);
+      margin-top: 80px;
+      padding-top: 56px;
+    }
+
+    .section-label {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-family: "Fraunces", serif;
+      font-weight: 400;
+      font-size: clamp(30px, 3.6vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 760px;
+      margin-bottom: 16px;
+    }
+
+    .section-title em { font-style: italic; color: var(--accent); }
+
+    .section-blurb {
+      color: var(--ink-soft);
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 28px;
+    }
+
+    .subject {
+      border: 1px solid var(--rule);
+      background: var(--paper);
+      padding: 36px 36px 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .subject:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px -18px rgba(26, 24, 20, 0.18);
+    }
+
+    .subject-tag {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .subject h3 {
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .subject h3 em { font-style: italic; color: var(--accent); }
+
+    .subject-desc {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+      margin-bottom: 28px;
+      flex-grow: 1;
+    }
+
+    .subject-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 22px;
+      border-top: 1px solid var(--rule);
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .download-btn {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: 17px;
+      color: var(--accent);
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    .download-btn:hover { opacity: 0.7; }
+
+    .file-info {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 10px;
+      color: var(--ink-faint);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .howto {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 32px;
+      margin-top: 30px;
+    }
+
+    .howto-item h4 {
+      font-family: "Fraunces", serif;
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .howto-item p {
+      font-size: 15px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .closing {
+      margin-top: 80px;
+      padding: 56px 0;
+      border-top: 1px solid var(--rule);
+      border-bottom: 1px solid var(--rule);
+      text-align: center;
+    }
+
+    .closing p.quote {
+      font-family: "Fraunces", serif;
+      font-style: italic;
+      font-size: clamp(22px, 2.6vw, 30px);
+      color: var(--ink);
+      max-width: 640px;
+      margin: 0 auto 22px;
+      line-height: 1.35;
+    }
+
+    .closing p.attr {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px;
+      color: var(--ink-faint);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      padding: 36px 0 48px;
+      border-top: 1px solid var(--rule);
+      margin-top: 60px;
+      font-size: 14px;
+      color: var(--ink-soft);
+    }
+
+    .foot-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links {
+      list-style: none;
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .foot-links a {
+      color: var(--ink-soft);
+      transition: color 0.2s ease;
+    }
+    .foot-links a:hover { color: var(--accent); }
+
+    @media (max-width: 720px) {
+      .wrap { padding: 0 22px; }
+      .subject { padding: 28px 24px 24px; }
+      nav ul { gap: 18px; }
+      nav a { font-size: 13px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap nav-row">
+      <a href="index.html" class="brand">Deepak Tiwari</a>
+      <nav>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="experience.html">Experience</a></li>
+          <li><a href="publications.html">Publications</a></li>
+          <li><a href="notes.html" class="active">Notes</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <p class="eyebrow">§ Notes</p>
+    <section class="hero">
+      <h1>Class <em>notes</em>, openly shared.</h1>
+      <p class="lead">
+        Study material for the courses I teach at RVSCET, Jamshedpur — written
+        the way I would have wanted them as a student. Real-world analogies, annotated code,
+        bad-vs-good comparisons, and review questions.
+      </p>
+      <p class="lead">
+        Free to download, free to share. No login, no email gate.
+      </p>
+      <p class="meta">Maintained for B.C.A · B.Tech students · Updated as the semester runs</p>
+    </section>
+
+    <section class="divider">
+      <p class="section-label">Subjects</p>
+      <h2 class="section-title">Pick a <em>subject</em>, grab the file.</h2>
+      <p class="section-blurb">
+        Each subject ships as a single, well-formatted document covering the full syllabus —
+        with cheat sheets, flowcharts, and review questions at the end of every unit.
+      </p>
+
+      <div class="subjects">
+
+        <article class="subject">
+          <p class="subject-tag">BCA · Sem 1st</p>
+          <h3>Python <em>Python Programming.</em></h3>
+          <p class="subject-desc">
+            A semester-long walk through Python — from INTRODUCING PYTHON to MODULES, PACKAGES AND NAMESPACES:Built for the JUT,Ranchi BCA syllabus.
+          </p>
+          <div class="subject-meta">
+            <a href="Python_Programming_BCA 1st SEM.pdf" class="download-btn">Download →</a>
+            <span class="file-info">DOCX · —</span>
+          </div>
+        </article>
+
+        <article class="subject">
+          <p class="subject-tag">BCA · Sem 3rd</p>
+          <h3> <em>Web Technology</em></h3>
+          <p class="subject-desc">
+            Core building blocks of modern web development — request-response cycles, API endpoints, DOM trees, async event queues, component hierarchies, and Big-O performance thinking, implemented cleanly in JavaScript.
+          </p>
+          <div class="subject-meta">
+            <a href="WEB TECHNOLOGY BCA 3rd SEM.pdf" class="download-btn">Download →</a>
+            <span class="file-info">DOCX · —</span>
+          </div>
+        </article>
+
+        <!-- 
+        
+        <article class="subject">
+          <p class="subject-tag">B.Tech · Sem 1</p>
+          <h3>Problem Solving <em>in C.</em></h3>
+          <p class="subject-desc">
+            The first programming course for engineering students — a careful walk from "what
+            is a program" to pointers, structures, and file handling, with bad-vs-good examples.
+          </p>
+          <div class="subject-meta">
+            <a href="#" class="download-btn">Download →</a>
+            <span class="file-info">DOCX · —</span>
+          </div>
+        </article>
+ -->
+      </div>
+    </section>
+
+    <section class="divider">
+      <p class="section-label">For students</p>
+      <h2 class="section-title">How to <em>use these notes.</em></h2>
+      <p class="section-blurb">
+        These are companions to lectures — not replacements. Use them in the order below and
+        you'll get more out of the time we spend in class.
+      </p>
+
+      <div class="howto">
+        <div class="howto-item">
+          <h4>1 · Read before class</h4>
+          <p>Skim the unit <em>before</em> the lecture. You'll absorb three times more in class.</p>
+        </div>
+        <div class="howto-item">
+          <h4>2 · Code along</h4>
+          <p>Don't just read code — type it out. Run it. Break it. That's where understanding sits.</p>
+        </div>
+        <div class="howto-item">
+          <h4>3 · Do the review questions</h4>
+          <p>Every unit ends with review questions. Treat them as a self-test, not optional homework.</p>
+        </div>
+        <div class="howto-item">
+          <h4>4 · Ask in class</h4>
+          <p>If something in the note is unclear, that's exactly what office hours and class time are for.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing">
+      <p class="quote">"Read slowly. Code daily. Ask questions without fear."</p>
+      <p class="attr">— A note for my students</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="wrap foot-row">
+      <span>© 2026 · Deepak Kumar Tiwari</span>
+      <ul class="foot-links">
+        <li><a href="https://github.com/shreedkt" rel="noopener" target="_blank">GitHub</a></li>
+        <li><a href="https://www.linkedin.com/in/shreedkt/" rel="noopener" target="_blank">LinkedIn</a></li>
+        <li><a href="https://hiretip.co/p/shreedkt" rel="noopener" target="_blank">Hiretip</a></li>
+        <li><a href="mailto:deepakkumartiwari999@gmail.com">Email</a></li>
+      </ul>
+    </div>
+  </footer>
+
+</body>
+</html>
